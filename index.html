@@ -1,0 +1,57 @@
+
+
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Ultimate Clicker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <h1> Ultimate Clicker</h1>
+
+    <h2>Coins: <span id="coins">0</span></h2>
+    <h2>Time: <span id="time">60</span></h2>
+
+    <button onclick="startGame()">START</button>
+    <button onclick="stopGame()">STOP</button>
+    <button onclick="addCoin()" id="click" disabled>CLICK ME!</button>
+
+    <script>
+        let coins = 0;
+        let time = 60;
+        let timer;
+
+        function startGame() {
+            if (timer) return;
+
+            document.getElementById("click").disabled = false;
+
+            timer = setInterval(function() {
+                time--;
+                document.getElementById("time").textContent = time;
+
+                if (time <= 0) {
+                    stopGame();
+                    document.getElementById("click").disabled = true;
+                }
+            }, 1000);
+        }
+
+        function stopGame() {
+            clearInterval(timer);
+            timer = null;
+            document.getElementById("click").disabled = true;
+        }
+
+        function addCoin() {
+            coins++;
+            document.getElementById("coins").textContent = coins;
+        }
+    </script>
+
+</body>
+</html>
+
